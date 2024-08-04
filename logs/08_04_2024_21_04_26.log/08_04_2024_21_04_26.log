@@ -1,0 +1,63 @@
+[ 2024-08-04 21:04:51,975 ] 97 werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[ 2024-08-04 21:04:51,975 ] 97 werkzeug - INFO - [33mPress CTRL+C to quit[0m
+[ 2024-08-04 21:06:17,296 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:17] "GET / HTTP/1.1" 200 -
+[ 2024-08-04 21:06:17,727 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[ 2024-08-04 21:06:28,754 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:28] "GET / HTTP/1.1" 200 -
+[ 2024-08-04 21:06:45,030 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:45] "[33mGET /index HTTP/1.1[0m" 404 -
+[ 2024-08-04 21:06:51,078 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:51] "GET / HTTP/1.1" 200 -
+[ 2024-08-04 21:06:55,559 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:06:55] "[33mGET /form HTTP/1.1[0m" 404 -
+[ 2024-08-04 21:07:03,044 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:07:03] "GET / HTTP/1.1" 200 -
+[ 2024-08-04 21:07:17,289 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:07:17] "GET / HTTP/1.1" 200 -
+[ 2024-08-04 21:07:21,684 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:07:21] "GET /predict HTTP/1.1" 200 -
+[ 2024-08-04 21:07:44,538 ] 66 root - INFO - Dataframe Gathered
+[ 2024-08-04 21:07:44,538 ] 54 root - INFO - Exception Occured in load_object function utils
+[ 2024-08-04 21:07:44,538 ] 27 root - INFO - Exception occured in prediction
+[ 2024-08-04 21:07:44,538 ] 838 application - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/utils.py", line 51, in load_object
+    with open(file_path,'rb') as file_obj:
+FileNotFoundError: [Errno 2] No such file or directory: 'artifacts/preprocessor.pkl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/pipelines/prediction_pipeline.py", line 17, in predict
+    preprocessor=load_object(preprocessor_path)
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/utils.py", line 55, in load_object
+    raise CustomException(e,sys)
+src.exception.CustomException: Error occured in python script name [/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/utils.py] line number [51] error message [[Errno 2] No such file or directory: 'artifacts/preprocessor.pkl']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/application.py", line 33, in predict_datapoint
+    pred=predict_pipeline.predict(final_new_data)
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/pipelines/prediction_pipeline.py", line 28, in predict
+    raise CustomException(e,sys)
+src.exception.CustomException: Error occured in python script name [/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/pipelines/prediction_pipeline.py] line number [17] error message [Error occured in python script name [/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/src/utils.py] line number [51] error message [[Errno 2] No such file or directory: 'artifacts/preprocessor.pkl']]
+[ 2024-08-04 21:07:44,541 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:07:44] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[ 2024-08-04 21:10:09,700 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:10:09] "GET /predict HTTP/1.1" 200 -
+[ 2024-08-04 21:10:12,642 ] 838 application - ERROR - Exception on /predict [POST]
+Traceback (most recent call last):
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/env/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/Users/suyash/Desktop/Void/PROJECTS/DiamondPricePrediction/application.py", line 21, in predict_datapoint
+    carat=float(request.form.get('carat')),
+ValueError: could not convert string to float: ''
+[ 2024-08-04 21:10:12,644 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:10:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+[ 2024-08-04 21:10:16,841 ] 97 werkzeug - INFO - 127.0.0.1 - - [04/Aug/2024 21:10:16] "GET /predict HTTP/1.1" 200 -
